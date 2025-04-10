@@ -68,7 +68,40 @@ module.exports = function (eleventyConfig) {
     /**=====================================================================
                                 END PLUGINS
     =======================================================================*/
+/**=====================================================================
+        COLLECTIONS - Process and sanitize permalinks for blog posts
+    =======================================================================*/
+    eleventyConfig.addCollection("post", function(collection) {
+        // 1. Get the files using the glob pattern
+        const posts = collection.getFilteredByGlob("./src/content/blog/*.md"); 
+        
+        // 2. ADD THE CONSOLE LOG HERE (After getting files, Before mapping)
+        console.log(`[DEBUG] Found ${posts.length} files for 'post' collection:`, posts.map(p => p.inputPath));
+        // --------------------------------------------------------------------
 
+        // 3. Now, map through the 'posts' array you just logged
+        return posts.map(post => { 
+            // --- Permalink handling logic (Keep as is) ---
+            if (post.data.permalink) {
+              // If permalink already exists in front matter, return immediately.
+              // Added curly braces for clarity, though optional for single statement.
+              return post; 
+            }
+    
+            let safeSlug = post.fileSlug
+                .toLowerCase()
+                .replace(/[^\w\d-]+/g, "-")
+                .replace(/(^-|-$)/g, "");
+    
+            post.data.permalink = `/blog/${safeSlug}/`; 
+            // --- End optional permalink handling ---
+
+            return post; // Make sure to return the post from the map function!
+        });
+    }); // <-- End of addCollection function
+
+    // Make sure htmlTemplateEngine is set correctly too
+    eleventyConfig.htmlTemplateEngine = "njk";
 
     /**======================================================================
        PASSTHROUGHS - Copy source files to /public with no 11ty processing

@@ -30,3 +30,17 @@ collections:
           - { label: "Featured Image", name: "image", widget: "image" }
           - { label: "Image Caption", name: "imageAlt", widget: "string" }
           - { label: "Body", name: "body", widget: "markdown" }
+          - label: "Image Gallery"             # Label shown in the CMS UI
+            name: "gallery"                  # Name used in your template files (e.g., post.gallery)
+            widget: "list"                   # Use the list widget for multiple items
+            summary: "{{fields.image}}"      # Optional: Show image path in collapsed view
+            field:                           # Define the single field to repeat
+              label: "Image"                 # Label for the individual image upload
+              name: "image"                  # Name for the image field within each list item
+              widget: "image"                # Use the image widget for uploading
+              media_library:                 # Optional: Fine-tune media library options
+                allow_multiple: false        # Set to true if you want multi-select *per add*
+        # --- Optional List Widget Settings ---
+        # allow_add: true                # Default is true, set to false to prevent adding more
+        # collapsed: true                # Default is true, set to false to show items expanded
+        # label_singular: "Image"        # Customize the 'Add Item' button text

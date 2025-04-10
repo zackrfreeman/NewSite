@@ -1,0 +1,338 @@
+/* ======================================== */
+/* Root Variables                         */
+/* ======================================== */
+:root {
+    --primary: #ffba19;
+    --primaryLight: #ffd675;
+    --secondary: #001f3f;
+    --secondaryLight: #001f3f;
+    --headerColor: #1a1a1a;
+    --bodyTextColor: #4e4b66;
+    --bodyTextColorWhite: #fafbfc;
+  
+    /* Font Sizes */
+    --topperFontSize: clamp(0.8125rem, 1.6vw, 1rem); /* 13px - 16px */
+    --headerFontSize: clamp(1.9375rem, 3.9vw, 3.0625rem); /* 31px - 49px */
+    --bodyFontSize: 1.25rem; /* Approx 20px if root is 16px */
+    --smallFontSize: 0.875rem; /* 14px */
+    --baseFontSize: 1rem; /* 16px */
+  
+    /* Padding */
+    --sectionPadding: clamp(3.75rem, 7.82vw, 6.25rem) 1rem; /* 60px - 100px top/bottom */
+  
+    /* Font Families */
+    --headingFont: "Libre Baskerville", serif;
+    --bodyFont: "Montserrat", sans-serif;
+  }
+  
+  /* ======================================== */
+  /* Base & Reset Styles                    */
+  /* ======================================== */
+  html {
+    overflow-x: hidden;
+    font-size: 100%;
+    box-sizing: border-box;
+  }
+  
+  *, *:before, *:after {
+    box-sizing: inherit;
+  }
+  
+  body {
+    color: var(--bodyTextColor);
+    font-family: var(--bodyFont);
+    font-size: var(--baseFontSize); /* Default body font size */
+    line-height: 1.5; /* Default line height */
+    margin: 0;
+    padding: 0;
+    transition: background-color 0.3s;
+  }
+  
+  /* ======================================== */
+  /* Global Typography Defaults             */
+  /* ======================================== */
+  h1, h2, h3, h4, h5, h6 {
+    margin: 1.5em 0 0.75em 0; /* Example default margins */
+    color: var(--headerColor);
+    font-family: var(--headingFont);
+    font-weight: 700; /* Default bold */
+    line-height: 1.3; /* Tighter line height for headings */
+  }
+  
+  /* Define default sizes - can be overridden by components/sections */
+  h1 { font-size: 2.5rem; } /* 40px */
+  h2 { font-size: 2rem; }   /* 32px */
+  h3 { font-size: 1.75rem; }/* 28px */
+  h4 { font-size: 1.5rem; } /* 24px */
+  h5 { font-size: 1.25rem; }/* 20px */
+  h6 { font-size: 1rem; }   /* 16px */
+  
+  p {
+    margin: 0 0 1em 0; /* Default paragraph margin */
+    color: var(--bodyTextColorMuted); /* Use the muted color globally */
+    line-height: 1.6; /* Specific line-height for paragraphs */
+  }
+  
+  li {
+    margin-bottom: 0.5em;
+    color: var(--bodyTextColorMuted); /* Use the muted color globally */
+    line-height: 1.6;
+  }
+  
+  ul, ol {
+    margin: 1em 0 1em (20/16rem); /* Default list margins */
+    padding-left: (20/16rem);
+  }
+  
+  a {
+    text-decoration: underline;
+    font-size: inherit; /* Inherit size from surrounding text */
+    color: var(--secondary); /* Use secondary color */
+    &:hover {
+        text-decoration: none; /* Optional: remove underline on hover */
+    }
+  }
+  
+  button {
+    font-family: var(--bodyFont);
+    &:hover {
+      cursor: pointer;
+    }
+  }
+  
+  .cs-topper {
+    font-family: var(--bodyFont);
+    font-size: var(--topperFontSize);
+    /* Add other topper styles if needed */
+  }
+  
+  /* ======================================== */
+  /* Utilities                              */
+  /* ======================================== */
+  .container {
+    position: relative;
+    margin: auto;
+    width: 92%;
+    max-width: 1280px; /* Example max-width */
+  }
+  
+  .skip { /* Hidden Screen reader skip nav button */
+    z-index: -1111111;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+  }
+  
+  /* ======================================== */
+  /* Font Faces                             */
+  /* ======================================== */
+  /* libre-baskerville-regular - latin */
+  @font-face {
+    font-display: swap;
+    font-family: 'Libre Baskerville';
+    font-style: normal;
+    font-weight: 400;
+    src: url('/assets/fonts/libre-baskerville-v14-latin-regular.woff2') format('woff2');
+  }
+  
+  /* montserrat-regular - latin */
+  @font-face {
+    font-display: swap;
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 400;
+    src: url('/assets/fonts/montserrat-v26-latin-regular.woff2') format('woff2');
+  }
+  
+  /* montserrat-700 - latin */
+  @font-face {
+    font-display: swap;
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 700;
+    src: url('/assets/fonts/montserrat-v26-latin-700.woff2') format('woff2');
+  }
+  
+  
+  /* ======================================== */
+  /* Blog Article Specific Styles             */
+  /* ======================================== */
+  .blog-article {
+    display: block;
+    max-width: (795/16em); /* ~49.7rem */
+    width: 100%;
+    z-index: 5; /* Consider if needed globally or just here */
+  
+    /* --- Blog Images --- */
+    .blog-mainImage,
+    .blog-author-img {
+      position: relative;
+      display: block;
+      overflow: hidden;
+  
+      img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+      }
+    }
+  
+    .blog-mainImage {
+      width: 100%;
+      border-radius: (24/16em);
+      margin-bottom: (50/16em);
+      height: clamp(200px, 30vw, 400px);
+    }
+  
+    .blog-author-img {
+      border-radius: 50%;
+      height: (32/16em); /* 2rem */
+      width: (32/16em); /* 2rem */
+      flex-shrink: 0; /* Prevent shrinking in flex layout */
+    }
+  
+    /* --- Blog Meta --- */
+    .blog-authorGroup {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      gap: (12/16rem); /* 0.75rem */
+      margin-bottom: (16/16rem); /* Add some space below meta */
+    }
+  
+    .blog-author,
+    .blog-date {
+      font-size: var(--smallFontSize); /* 14px */
+      line-height: 1.5; /* Consistent line height */
+      color: var(--bodyTextColor); /* Black */
+    }
+  
+    .blog-dot {
+      display: block;
+      border-radius: 50%;
+      background-color: var(--accentPink);
+      height: 3px;
+      width: 3px;
+    }
+  
+    /* --- Blog Main Title (Restored Specific Rule) --- */
+    .blog-h1 {
+      /* These styles apply *only* to H1 elements with the class .blog-h1 */
+      /* They will override the global h1 styles */
+      margin: (16/16rem) 0;
+      max-width: (550/16rem); /* ~34.4rem */
+      font-size: clamp(20px, 5vw, 39px);
+      line-height: 1.4em; /* Specific line height for this title */
+      font-weight: 700;
+      color: var(--headerColor);
+      /* font-family is inherited from global h1..h6 */
+    }
+  
+    /* --- Blog Content (Markdown Area) --- */
+    /* Styles inside #blog-content are highly specific */
+    #blog-content {
+      border-top: 1px solid var(--borderColor);
+      margin-top: (16/16em); /* 1em */
+      padding-top: (25/16em); /* ~1.56em */
+  
+      /* Override global heading styles within blog content */
+      h1, h2, h3, h4, h5, h6 {
+        font-weight: 700;
+        color: var(--headerColor);
+        margin-bottom: (16/16rem); /* 1rem */
+        margin-top: (24/16rem); /* 1.5rem - More space above headings */
+        line-height: 1.3; /* Use default heading line-height */
+      }
+  
+      h1 { font-size: 2rem; }       /* 32px - Slightly smaller than global */
+      h2 { font-size: 1.75rem; }    /* 28px */
+      h3 { font-size: 1.5rem; }     /* 24px */
+      h4 { font-size: 1.25rem; }    /* 20px */
+      h5 { font-size: 1.125rem; }   /* 18px */
+      h6 { font-size: 1rem; }       /* 16px */
+  
+      /* Override global p styles within blog content */
+      p {
+        margin: 0 0 (16/16rem) 0; /* 1rem */
+        font-size: var(--baseFontSize); /* 1rem */
+        line-height: 1.7; /* Slightly more spacing for readability */
+        color: var(--bodyTextColor); /* Use standard text color */
+      }
+  
+      /* Override global a styles within blog content */
+      
+  
+      /* Override global list styles within blog content */
+      ul, ol {
+        margin: (16/16rem) 0; /* 1rem */
+        padding-left: (40/16rem); /* 2.5rem */
+  
+        li {
+          margin-bottom: (12/16rem); /* Slightly less space between items */
+          list-style: circle;
+          font-size: var(--baseFontSize); /* 1rem */
+          line-height: 1.7; /* Match paragraph line-height */
+          color: var(--bodyTextColor); /* Use standard text color */
+        }
+      }
+  
+       /* Image styles within blog content */
+      img {
+        display: block;
+        border-radius: (12/16rem); /* Slightly smaller radius */
+        margin: (24/16rem) 0; /* More space around images */
+        height: auto;
+        max-width: 100%; /* Ensure images don't overflow */
+        width: auto; /* Let image decide width up to max-width */
+      }
+    } /* End #blog-content */
+  } /* End .blog-article */
+  
+  /* Decap CMS Preview Pane Max Width */
+  .frame-content {
+    max-width: 50rem;
+    margin-left: auto; /* Center the content */
+    margin-right: auto; /* Center the content */
+    padding-left: 1rem; /* Optional: Add padding so text doesn't touch edges */
+    padding-right: 1rem; /* Optional: Add padding so text doesn't touch edges */
+    box-sizing: border-box; /* Ensure padding is included in the max-width */
+  }
+  
+  /* Optional: Ensure images within respect the max-width */
+  /* In your preview stylesheet */
+  
+  /* In your preview stylesheet (e.g., preview-styles.less) */
+  
+  .frame-content img,
+  #blog-content img { 
+    display: block; 
+    
+    /* --- Force Aspect Ratio --- */
+    /* Calculate approximate ratio from target: 795 width / 400 height ≈ 1.98 */
+    /* Or use a standard landscape ratio like 16/9 */
+    aspect-ratio: 795 / 400; /* Use the original dimensions to set the ratio */
+    /* OR aspect-ratio: 16 / 9; /* For a standard widescreen look */
+  
+    /* --- Sizing & Appearance --- */
+    width: 100%;       /* Let width fill the container */
+    max-width: 795px;  /* Optional: Set a max pixel width if needed */ 
+                        /* (Matches original attributes, but might exceed 50rem container) */
+    height: auto;      /* Let height adjust based on width and aspect-ratio */
+    object-fit: cover; /* Ensure image covers the area, cropping if necessary */
+  
+    /* Match the border-radius */
+    border-radius: 1.5em; 
+  
+    /* Keep centering and spacing */
+    margin-left: auto; 
+    margin-right: auto;
+    margin-top: 1.5rem; 
+    margin-bottom: 1.5rem; 
+  }
+  
+  /* Remove or comment out any conflicting height/width rules */
+  /* from previous attempts for .frame-content img */

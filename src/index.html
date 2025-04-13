@@ -164,11 +164,11 @@ eleventyNavigation:
         <div class="cs-container">
             <!-- Left Image Section -->
             <div class="cs-left">
-                <picture class="cs-picture cs-picture1">
-                    <source media="(max-width: 600px)" srcset= "{% getUrl "/assets/images/test.jpg" | resize({width: 496, height:541}) | webp %}">
-                    <source media="(min-width: 601px)" srcset="{% getUrl "/assets/images/test.jpg"| resize({width: 496, height:541}) | webp%}">
-                    <img aria-hidden="true" decoding="async" src="{% getUrl "/assets/images/test.jpg" | resize({width: 496, height:541}) | webp%}" alt="cabinets" loading="lazy" width="400" height="563">
-                </picture>
+                    <picture class="cs-picture cs-picture1">
+                    <source media="(max-width: 600px)" srcset= "/assets/images/construction-m.jpg">
+                    <source media="(min-width: 601px)" srcset="/assets/images/construction-m.jpg">
+                    <img aria-hidden="true" decoding="async" src="/assets/images/construction-m.jpg" alt="cabinets" loading="lazy" width="400" height="563">
+                </picture> 
                 <picture class="cs-picture cs-picture2">
                     <source media="(max-width: 600px)" srcset="/assets/images/construction-m.jpg">
                     <source media="(min-width: 601px)" srcset="/assets/images/construction.jpg">
@@ -243,7 +243,7 @@ eleventyNavigation:
     <!--                    Blog                      -->
     <!-- ============================================ -->
 
-    <section id="blog-1289">
+ <section id="blog-1289">
         <div class="cs-container">
             <div class="cs-content">
                 <div class="cs-flex-group">
@@ -269,11 +269,9 @@ eleventyNavigation:
                             {# Link the whole card to the post URL #}
                             <a href="{{ post.url }}" class="cs-link">
                                 <picture class="cs-picture">
-                                    {# Use post's image data, provide default #}
-                                    <source media="(max-width: 600px)" srcset= "{% getUrl "/assets/images/test.jpg" | resize({width: 496, height:541})%}">
-                                    <source media="(min-width: 601px)" srcset="{% getUrl "/assets/images/test.jpg"| resize({width: 496, height:541}) %}">
-                                    <img aria-hidden="true" decoding="async" src="{% getUrl "/assets/images/test.jpg" | resize({width: 496, height:541}) %}" alt="cabinets" loading="lazy" width="400" height="563">
-                                </picture>
+                                    {% set webpUrl = post.data.image | replace('.png', '.webp') | replace('.avif', '.webp') | replace('.jpeg', '.webp') | replace('.jpg', '.webp') %}
+                                    <img loading="lazy" decoding="async" src="{{ webpUrl }}" alt="building" width="270" height="200">
+                                </picture> 
                                 <div class="cs-flex">
                                     {# Use post's date data, apply postDate filter #}
                                     <span class="cs-date">{{ post.data.date | postDate if post.data.date }}</span> 
@@ -299,7 +297,7 @@ eleventyNavigation:
                  View All Posts
             </a>
         </div>
-    </section>
+    </section> 
                                 
     <!-- ============================================ -->
     <!--                   Gallery                    -->

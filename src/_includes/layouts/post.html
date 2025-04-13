@@ -50,9 +50,9 @@
             <article class="blog-article">
                 <!--Main Article Image-->
                 <picture class="blog-mainImage">
-                    <source media="(max-width: 600px)" srcset= "{% getUrl "/assets/images/test.jpg" | resize({width: 496, height:541})%}">
-                    <source media="(min-width: 601px)" srcset="{% getUrl "/assets/images/test.jpg"| resize({width: 496, height:541}) %}">
-                    <img aria-hidden="true" decoding="async" src="{% getUrl "/assets/images/test.jpg" | resize({width: 496, height:541}) %}" alt="cabinets" loading="lazy" width="400" height="563">
+                    <source media="(max-width: 600px)" srcset= "{{ imageUrl }}">
+                    <source media="(min-width: 601px)" srcset="{{ imageUrl }}">
+                    <img aria-hidden="true" decoding="async" src="{{ imageUrl }}" alt="cabinets" loading="lazy" width="400" height="563">
                 </picture>
 
                 <!--Article Info-->

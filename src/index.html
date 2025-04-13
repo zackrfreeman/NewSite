@@ -269,7 +269,6 @@ eleventyNavigation:
                             {# Link the whole card to the post URL #}
                             <a href="{{ post.url }}" class="cs-link">
                                 <picture class="cs-picture">
-                                    {% set webpUrl = post.data.image | replace('.png', '.webp') | replace('.avif', '.webp') | replace('.jpeg', '.webp') | replace('.jpg', '.webp') %}
                                     <img loading="lazy" decoding="async" src="{{ post.data.image }}" alt="{{ post.data.imageAlt }}" alt="building" width="270" height="200">
                                 </picture> 
                                 <div class="cs-flex">

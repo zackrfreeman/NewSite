@@ -10,37 +10,73 @@ media_folder: "src/assets/images/blog"
 public_folder: "/assets/images/blog"
 
 collections:
-    - name: "blog"
-      label: "Blog"
-      folder: "src/content/blog"
-      create: true
-      slug: "{{slug}}"
-      fields:
-          - { label: "Title", name: "title", widget: "string" }
-          - {
-                label: "URL Slug",
-                name: "url",
-                widget: "string",
-                hint: 'Specify where the page will be written to. If you use "Blog Post", the post will be accessible from "blog/blog-post"',
-            }
-          - { label: "Description", name: "description", widget: "string" }
-          - { label: "Author", name: "author", widget: "string" }
-          - { label: "Date", name: "date", widget: "datetime" }
-          - { label: "Tags", name: "tags", widget: "list", default: ["post"] }
-          - { label: "Featured Image", name: "image", widget: "image" }
-          - { label: "Image Caption", name: "imageAlt", widget: "string" }
-          - { label: "Body", name: "body", widget: "markdown" }
-          - label: "Image Gallery"             # Label shown in the CMS UI
-            name: "gallery"                  # Name used in your template files (e.g., post.gallery)
-            widget: "list"                   # Use the list widget for multiple items
-            summary: "{{fields.image}}"      # Optional: Show image path in collapsed view
-            field:                           # Define the single field to repeat
-              label: "Image"                 # Label for the individual image upload
-              name: "image"                  # Name for the image field within each list item
-              widget: "image"                # Use the image widget for uploading
-              media_library:                 # Optional: Fine-tune media library options
-                allow_multiple: false        # Set to true if you want multi-select *per add*
+  - name: "blog"
+    label: "Blog"
+    folder: "src/content/blog"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - label: "Title"
+        name: "title"
+        widget: "string"
+        hint: "The main title of the blog post (appears as H1)."
+
+      - label: "URL Slug"
+        name: "url"
+        widget: "string"
+        hint: 'Sets the final URL path (e.g., "my-first-post" becomes /blog/my-first-post/). Use lowercase letters, numbers, and hyphens.'
+
+      - label: "Description"
+        name: "description"
+        widget: "string"
+        hint: "A short summary for SEO meta descriptions and post previews (approx. 160 characters)."
+
+      - label: "Author"
+        name: "author"
+        widget: "string"
+        hint: "Name of the person who wrote the post."
+
+      - label: "Date"
+        name: "date"
+        widget: "datetime"
+        hint: "Publication date and time for the post. Used for sorting."
+
+      - label: "Tags"
+        name: "tags"
+        widget: "list"
+        default: ["post"]
+        hint: "Keywords or categories (e.g., 'post', 'news'). Press Enter after each tag. 'post' tag is required."
+
+      - label: "Featured Image"
+        name: "image"
+        widget: "image"
+        hint: "The main image displayed for the post (e.g., at the top or in listings)."
+
+      - label: "Image Caption"
+        name: "imageAlt"
+        widget: "string"
+        hint: "Descriptive text for the featured image (important for SEO and screen readers)."
+
+      # --- Gallery field ---
+      - label: "Image Gallery"
+        name: "gallery"
+        widget: "list"
+        summary: "{{fields.image}}"
+        hint: "Add multiple images to display in a gallery within the post." # Hint for the gallery list itself
+        field:                          # Defines the fields for *each* item in the list
+          label: "Image"
+          name: "image"                 # The value stored for each item will be the image path
+          widget: "image"
+          hint: "Upload one image for this gallery item." # Hint for the field *within* the list item
+          media_library:
+            allow_multiple: false
         # --- Optional List Widget Settings ---
-        # allow_add: true                # Default is true, set to false to prevent adding more
-        # collapsed: true                # Default is true, set to false to show items expanded
-        # label_singular: "Image"        # Customize the 'Add Item' button text
+        # allow_add: true
+        # collapsed: true
+        # label_singular: "Image"
+
+      # --- Body field ---
+      - label: "Body"
+        name: "body"
+        widget: "markdown"
+        hint: "The main content of the blog post. Use Markdown for formatting (headings, bold, links, etc.)."

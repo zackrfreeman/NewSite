@@ -6,7 +6,7 @@ author: me
 date: 2025-04-12T23:15:00.000Z
 tags:
   - post
-image: /assets/images/blog/star_trek_the_next_generation_best_episodes_header.avif
+image: /assets/images/blog/f14.png
 imageAlt: grg
 ---
 aqporifjqo[wierfq[po 'rewf iqeir jq

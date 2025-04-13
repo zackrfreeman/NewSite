@@ -641,6 +641,13 @@
             color: var(--headerColor);
         }
 
+
+        #blog-content {
+            border-top: 1px solid #ebebeb;
+            margin-top: (16/16em);
+            padding-top: (25/16em);
+
+            
         .post-gallery {
             /* Container for the strip */
             width: 100%; /* Take full available width */
@@ -651,6 +658,10 @@
             background-color: #f0f0f0; /* Optional: background for the strip */
             border: 1px solid var(--borderColor, #e0e0e0); /* Optional: border */
             margin-bottom: 1.5rem; /* Space below the gallery */
+            margin-right: 5rem;
+            text-align: center; // This will center the inline-block items
+            border: none; // Add this to remove any border
+           
         }
         
         .post-gallery h2 {
@@ -667,7 +678,7 @@
             vertical-align: top; /* Align items nicely */
             width: 150px; /* Set a fixed width for each thumbnail */
             height: 100px; /* Set a fixed height */
-            margin-right: 0.75rem; /* Space between items */
+            margin-right: (8/16rem) !important; /* Space between items */
             border-radius: 4px; /* Optional: slightly rounded corners */
             overflow: hidden; /* Hide parts of image that don't fit */
             position: relative; /* For potential overlays or icons */
@@ -690,11 +701,6 @@
             object-fit: cover; /* Crop image to fit dimensions */
             display: block;
         }
-
-        #blog-content {
-            border-top: 1px solid #ebebeb;
-            margin-top: (16/16em);
-            padding-top: (25/16em);
 
             h1 {
                 margin-bottom: 1rem;
@@ -739,7 +745,7 @@
             }
 
             a {
-                text-decoration: underline;
+                text-decoration: none;
                 font-size: inherit;
                 color: var(--secondary);
             }
@@ -762,10 +768,52 @@
                 display: block;
                 border-radius: (8/16rem);
                 margin: (16/16rem) 0;
+                
                 height: auto;
                 width: 100%;
             }
         }
+
+        .share-flex {
+            margin-top: 2rem;
+            min-height: 100px;
+          
+            p {
+              font-weight: bold;
+              margin-bottom: 1rem;
+            }
+          
+            .share-buttons {
+              display: flex;
+              flex-wrap: wrap;
+              gap: 1rem;
+          
+              .share-btn {
+                all: unset;
+                padding: 0.5rem;
+                border-radius: 6px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 40px;
+                height: 40px;
+                transition: background 0.3s ease;
+                border: 2px solid transparent;
+                cursor: pointer;
+          
+                &:hover {
+                  border: 2px solid var(--primary);
+                }
+
+                img {
+                  display: block;
+                  width: 40px;
+                  height: 40px;
+                }
+              }
+            }
+          }
+
     }
 }
 

@@ -270,7 +270,7 @@ eleventyNavigation:
                             <a href="{{ post.url }}" class="cs-link">
                                 <picture class="cs-picture">
                                     {% set webpUrl = post.data.image | replace('.png', '.webp') | replace('.avif', '.webp') | replace('.jpeg', '.webp') | replace('.jpg', '.webp') %}
-                                    <img loading="lazy" decoding="async" src="{{ webpUrl }}" alt="building" width="270" height="200">
+                                    <img loading="lazy" decoding="async" src="{{ post.data.image }}" alt="{{ post.data.imageAlt }}" alt="building" width="270" height="200">
                                 </picture> 
                                 <div class="cs-flex">
                                     {# Use post's date data, apply postDate filter #}

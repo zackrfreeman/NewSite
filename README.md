@@ -1,3 +1,5 @@
+<p <strong>This is my personal version of Codestitch's Intermediate Starter Kit which includes some dynamic blog sections on the home page and some sharing buttons in the post.html file.</strong></p>
+
 <br/>
 <p align="center">
   <a href="https://codestitch.app/">

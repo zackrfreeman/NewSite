@@ -1,7 +1,7 @@
 {
-    "name": "starter-kit-v4",
+    "name": "newsite",
     "version": "1.0.0",
-    "description": "",
+    "description": "TriCity Technologies' Eleventy + Decap CMS starter, based on CodeStitch's Intermediate Website Kit (LESS)",
     "main": "index.js",
     "scripts": {
         "build:less": "less-watch-compiler --run-once ./src/assets/less ./src/assets/css",
@@ -10,20 +10,19 @@
         "build:eleventy": "cross-env ELEVENTY_ENV=PROD eleventy",
         "watch:cms": "npx decap-server",
         "start": "del-cli ./public --force && npm-run-all --parallel watch:*",
-        "process:images": "node scripts/process-blog-images.js",
         "build": "run-s build:less build:eleventy"
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/CodeStitchOfficial/Intermediate-Website-Kit-LESS.git"
+        "url": "git+https://github.com/Zackrfreeman/NewSite.git"
     },
     "keywords": [],
-    "author": "",
+    "author": "Zack Freeman, TriCity Technologies",
     "license": "ISC",
     "bugs": {
-        "url": "https://github.com/CodeStitchOfficial/Intermediate-Website-Kit-LESS/issues"
+        "url": "https://github.com/Zackrfreeman/NewSite/issues"
     },
-    "homepage": "https://github.com/CodeStitchOfficial/Intermediate-Website-Kit-LESS#readme",
+    "homepage": "https://github.com/Zackrfreeman/NewSite#readme",
     "dependencies": {
         "@11ty/eleventy": "^2.0.1",
         "@11ty/eleventy-navigation": "^0.3.5",

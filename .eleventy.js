@@ -4,11 +4,6 @@ const pluginMinifier = require("@sherby/eleventy-plugin-files-minifier");
 const pluginSitemap = require("@quasibit/eleventy-plugin-sitemap");
 const eleventyPluginSharpImages = require("@codestitchofficial/eleventy-plugin-sharp-images");
 
-module.exports = function (eleventyConfig) {
-   
-};
-
-
 // Configs
 const configCss = require("./src/config/css");
 const configJs = require("./src/config/javascript");
@@ -62,7 +57,7 @@ module.exports = function (eleventyConfig) {
 
     /**
      *  AUTOMATIC SITEMAP GENERATION 
-     *  Automatically generate a sitemap, using the domain in _data/client.json
+     *  Automatically generate a sitemap, using the domain in _data/client.js
      *  https://www.npmjs.com/package/@quasibit/eleventy-plugin-sitemap
      */
     eleventyConfig.addPlugin(pluginSitemap, configSitemap);
@@ -78,40 +73,31 @@ module.exports = function (eleventyConfig) {
     /**=====================================================================
                                 END PLUGINS
     =======================================================================*/
-/**=====================================================================
+
+    /**=====================================================================
         COLLECTIONS - Process and sanitize permalinks for blog posts
     =======================================================================*/
     eleventyConfig.addCollection("post", function(collection) {
-        // 1. Get the files using the glob pattern
-        const posts = collection.getFilteredByGlob("./src/content/blog/*.md"); 
-        
-        // 2. ADD THE CONSOLE LOG HERE (After getting files, Before mapping)
-        console.log(`[DEBUG] Found ${posts.length} files for 'post' collection:`, posts.map(p => p.inputPath));
-        // --------------------------------------------------------------------
+        const posts = collection.getFilteredByGlob("./src/content/blog/*.md");
 
-        // 3. Now, map through the 'posts' array you just logged
-        return posts.map(post => { 
-            // --- Permalink handling logic (Keep as is) ---
+        // Build a clean /blog/<slug>/ permalink unless the post sets its own
+        return posts.map(post => {
             if (post.data.permalink) {
-              // If permalink already exists in front matter, return immediately.
-              // Added curly braces for clarity, though optional for single statement.
-              return post; 
+                return post;
             }
-    
+
             let safeSlug = post.fileSlug
                 .toLowerCase()
                 .replace(/[^\w\d-]+/g, "-")
                 .replace(/(^-|-$)/g, "");
     
-            post.data.permalink = `/blog/${safeSlug}/`; 
-            // --- End optional permalink handling ---
-
-            return post; // Make sure to return the post from the map function!
+            post.data.permalink = `/blog/${safeSlug}/`;
+            return post;
         });
-    }); // <-- End of addCollection function
-
-    // Make sure htmlTemplateEngine is set correctly too
-    eleventyConfig.htmlTemplateEngine = "njk";
+    });
+    /**=====================================================================
+                              END COLLECTIONS
+    =======================================================================*/
 
     /**======================================================================
        PASSTHROUGHS - Copy source files to /public with no 11ty processing

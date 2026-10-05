@@ -2,3 +2,5 @@
 .cache
 node_modules
 public
+# Form email previews (scripts/preview-form-email.mjs)
+form-email-preview*

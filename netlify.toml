@@ -2,6 +2,13 @@
   publish = "public/"
   command = "npm run build"
 
+# Form notification + auto-reply emails (netlify/functions/submission-created.js)
+# and the signed file links in them (netlify/functions/lead-file.js).
+# Using an email logo? Add: included_files = ["netlify/assets/**"]
+[functions]
+  directory = "netlify/functions"
+  node_bundler = "esbuild"
+
 [[plugins]]
   # Installs the Lighthouse Build Plugin for all deploy contexts
   package = "@netlify/plugin-lighthouse"

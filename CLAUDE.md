@@ -55,9 +55,14 @@ Pages from the template that were removed: TODO
 
 | Form name | Page | Handler | Notifications go to | Fields |
 | --- | --- | --- | --- | --- |
-| TODO | TODO | TODO | TODO | TODO |
+| Contact Form | `/contact/` | Netlify Forms + `submission-created` (ZeptoMail) | TODO (`FORM_NOTIFY_TO`) | name, email, phone, find-us, Message |
 
-- Spam protection: TODO
+- Email layout, sender, and auto-reply wording: `netlify/form-notify.config.js`
+- Sender domain verified in ZeptoMail: TODO
+- Auto-reply wording approved by client: TODO
+- Netlify built-in form notification turned off after live test: TODO
+
+- Spam protection: Netlify honeypot (`bot-field`)
 - Success / thank-you behavior: TODO
 
 ## CMS

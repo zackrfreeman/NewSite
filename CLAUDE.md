@@ -57,13 +57,15 @@ Pages from the template that were removed: TODO
 | --- | --- | --- | --- | --- |
 | Contact Form | `/contact/` | Netlify Forms + `submission-created` (ZeptoMail) | TODO (`FORM_NOTIFY_TO`) | name, email, phone, find-us, Message |
 
-- Email layout, sender, and auto-reply wording: `netlify/form-notify.config.js`
-- Sender domain verified in ZeptoMail: TODO
+- Email system: Netlify Forms triggers `netlify/functions/submission-created.js`, which sends the owner notification (with vCard, and PDF when configured) and the submitter auto-reply through ZeptoMail. `netlify/functions/lead-file.js` serves the signed "Save contact", PDF, and calendar links in those emails.
+- Site settings (colors, logo, sender, per-form layout, auto-reply wording): `netlify/form-notify.config.js`, the only email file edited per site. Setup checklist at the top of that file.
+- Lead recipients: `FORM_NOTIFY_TO` in Netlify env vars = TODO. If unset, the function falls back to `client.email`.
+- Sender (`fromAddress`): TODO, on the client's own domain, verified in ZeptoMail. Not tricitytech.net (Microsoft 365 quarantined that as phishing, 2026-09-29).
 - Auto-reply wording approved by client: TODO
-- Netlify built-in form notification turned off after live test: TODO
-
+- Netlify built-in form notification turned off after live test: TODO (both on = duplicate emails)
+- Preview locally: `npm run preview:email` (output is gitignored)
 - Spam protection: Netlify honeypot (`bot-field`)
-- Success / thank-you behavior: TODO
+- Success / thank-you behavior: TODO (template default: Netlify's generic success page; there is no `/thanks/` page)
 
 ## CMS
 
@@ -80,6 +82,7 @@ Pages from the template that were removed: TODO
 - Analytics: TODO
 - Maps, booking, chat, reviews, or other embeds: TODO
 - Where each is loaded (page and position): TODO
+- Transactional email: ZeptoMail (Zoho). Netlify env vars: `ZEPTOMAIL_TOKEN` (required), `FORM_NOTIFY_TO`, optional `FORM_NOTIFY_FROM` / `FORM_NOTIFY_FROM_NAME`, optional `FORM_LINK_SECRET` (signs email file links; defaults to the token). ZeptoMail agent for this site: TODO
 
 ## Redirects
 
@@ -88,6 +91,7 @@ Pages from the template that were removed: TODO
 ## Off-limits
 
 - Files, sections, or content Claude must not change: TODO
+- `netlify/form-email.js` and `netlify/form-extras.js` are shared across every TCT site (NewSite, TCTech2, EliteExpressWash). Don't change them for one site; site differences go in `form-notify.config.js`. A real fix goes into every repo at once.
 - Client-managed content (edited through the CMS only): TODO
 
 ## Deviations from NewSite

@@ -1,5 +1,6 @@
 const esbuild = require("esbuild");
 const fs = require("node:fs");
+const path = require("node:path");
 const server = require("../config/server");
 const isProduction = server.isProduction;
 
@@ -8,9 +9,8 @@ module.exports = {
     outputFileExtension: "js",
     init: async function () {
         // Create the /assets/js directory on first build (prevents an error from directory not existing)
-        fs.mkdir('public/assets/js', { recursive: true }, (err) => {
-            if (err) throw err;
-        });
+        // Synchronous so the folder exists before any JS is written (the async version raced on Netlify, 2026-11-07)
+        fs.mkdirSync('public/assets/js', { recursive: true });
     },
     compile: async (content, inputPath) => {
         // If the file isn't from the assets directory, ignore it. It's probably a config file.
@@ -33,9 +33,8 @@ module.exports = {
             // Iterate over built files from ESBuild process
             result.outputFiles.forEach(file => {
                 // Write the ESBuild files to this new directory
-                fs.writeFile(file.path, file.text, function (err) {
-                    if (err) throw err;
-                });
+                fs.mkdirSync(path.dirname(file.path), { recursive: true });
+                fs.writeFileSync(file.path, file.text);
             });
 
             return undefined;
